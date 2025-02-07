@@ -1,0 +1,25 @@
+/* Changer l'arrière-plan de Swagger UI */
+.swagger-ui {
+    background-color: #f0f2f5 !important;
+}
+
+/* Modifier la barre du haut */
+.swagger-ui .topbar {
+    background-color: #2b2b2b !important;
+}
+
+/* Modifier les boutons */
+.swagger-ui .btn {
+    background-color: #ff5733 !important;
+    color: white !important;
+}
+
+/* Changer la couleur des liens */
+.swagger-ui a {
+    color: #ff5733 !important;
+}
+
+/* Modifier la couleur des sections */
+.swagger-ui .opblock-summary {
+    background-color: #e0e0e0 !important;
+}
