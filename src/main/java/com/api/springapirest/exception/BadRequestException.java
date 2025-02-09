@@ -1,16 +1,11 @@
 package com.api.springapirest.exception;
 
-import lombok.Getter;
 
-import java.util.Map;
 
-@Getter
-public class BadRequestException extends RuntimeException {
-  private final Map<String, String> errors;
+public abstract class BadRequestException extends RuntimeException {
 
-  public BadRequestException(Map<String, String> errors) {
-    super("Validation errors");
-    this.errors = errors;
+  public BadRequestException(String field, String objet, String value) {
+    super("The value of "+field+" '"+value + " is not valid in " + objet);
   }
 
 }
