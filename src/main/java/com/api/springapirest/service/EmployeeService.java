@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Service("employee_service")
 @RequiredArgsConstructor
 @Slf4j
-public class EmployeeService {
+public class EmployeeService implements IEmployeeService{
 
     private final EmployeeRepository employeeRepository;
     private final EmployeeMapper employeeMapper;
@@ -37,16 +37,18 @@ public class EmployeeService {
         return Optional.of(employee);
     }
 
+    @Override
     public Optional<EmployeeResponseDTO> getEmployeeById(final Long id) {
         log.info("Start of fetching employee with ID: {}", id);
         Optional<EmployeeResponseDTO> employee = findEmployeeById(id).map(employeeMapper::toDTO);
         log.info("End of fetching employee with ID: {}", id);
         if (employee.isPresent()) {
-            return Optional.of(employee.get());
+            return employee;
         }
         throw new NotFoundEmployeeException(id);
     }
 
+    @Override
     public List<EmployeeResponseDTO> getEmployees(final int numPage, final int limite) {
         log.info("Start to fetching all employees: {} par {} page", numPage, limite);
         Pageable pageable = PageRequest.of(numPage-1, limite);
@@ -57,6 +59,7 @@ public class EmployeeService {
         return employees;
     }
 
+    @Override
     public void deleteEmployee(final Long id) {
         log.info("Start of deleting employee with id: {}", id);
         Optional <Employee> employee =  findEmployeeById(id);
@@ -68,6 +71,7 @@ public class EmployeeService {
         throw new NotFoundEmployeeException(id);
     }
 
+    @Override
     public EmployeeResponseDTO saveEmployee(final EmployeeCreateDTO employeeCreateDTO) {
         log.info("start to create a new employee");
         Employee employee = employeeMapper.createReqtoEntity(employeeCreateDTO);
@@ -77,6 +81,7 @@ public class EmployeeService {
         return employeeResponseDTO;
     }
 
+    @Override
     public Optional<EmployeeResponseDTO> updateEmployee(final Long id, final EmployeeUpdateDTO employee) {
         log.info("Start of updating employee with id: {}", id);
         Optional <Employee> employeeById =  findEmployeeById(id);

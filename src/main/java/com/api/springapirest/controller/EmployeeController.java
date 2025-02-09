@@ -4,7 +4,7 @@ import com.api.springapirest.dto.request.EmployeeCreateDTO;
 import com.api.springapirest.dto.request.EmployeeUpdateDTO;
 import com.api.springapirest.dto.response.EmployeeResponseDTO;
 import com.api.springapirest.exception.NotFoundEmployeeException;
-import com.api.springapirest.service.EmployeeService;
+import com.api.springapirest.service.IEmployeeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -23,7 +23,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeController {
 
-    private final EmployeeService employeeService;
+    private final IEmployeeService employeeService;
 
     @Operation(summary = "Récupérer tous les employés", description = "Retourne une liste de tous les employés")
     @ApiResponse(responseCode = "200", description = "Liste des employés récupérée avec succès")
