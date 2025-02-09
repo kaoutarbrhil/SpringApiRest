@@ -10,6 +10,8 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeController {
 
+    @Autowired
+    @Qualifier("employee_service")
     private final IEmployeeService employeeService;
 
     @Operation(summary = "Récupérer tous les employés", description = "Retourne une liste de tous les employés")

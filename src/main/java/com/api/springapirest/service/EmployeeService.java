@@ -7,9 +7,12 @@ import com.api.springapirest.exception.NotFoundEmployeeException;
 import com.api.springapirest.exception.SalaryBadException;
 import com.api.springapirest.mapper.EmployeeMapper;
 import com.api.springapirest.entity.Employee;
+import com.api.springapirest.mapper.IEmployeeMapper;
 import com.api.springapirest.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,8 +27,13 @@ import java.util.stream.Collectors;
 @Slf4j
 public class EmployeeService implements IEmployeeService{
 
+    @Autowired
+    @Qualifier("employee_repository")
     private final EmployeeRepository employeeRepository;
-    private final EmployeeMapper employeeMapper;
+
+    @Autowired
+    @Qualifier("employee_mapper")
+    private final IEmployeeMapper employeeMapper;
 
     private Optional<Employee> findEmployeeById(final Long id) {
         log.info("Find employee by id: {}", id);
@@ -107,5 +115,15 @@ public class EmployeeService implements IEmployeeService{
         EmployeeResponseDTO updatedEmployeeResponseDTO = employeeMapper.toDTO(updatedEmployee);
         log.info("End of updating employee, Employee with id {} updated successfully", id);
         return Optional.ofNullable(updatedEmployeeResponseDTO);
+    }
+
+    @Override
+    public void login(String username, String password) {
+
+    }
+
+    @Override
+    public void logout() {
+
     }
 }

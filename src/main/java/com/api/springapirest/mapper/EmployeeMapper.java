@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component("employee_mapper")
 @Slf4j
-public class EmployeeMapper {
+public class EmployeeMapper implements IEmployeeMapper {
 
     public EmployeeResponseDTO toDTO(final Employee employee) {
         log.info("Start of mapping from entity to response");

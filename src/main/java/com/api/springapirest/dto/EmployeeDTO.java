@@ -1,6 +1,8 @@
 package com.api.springapirest.dto;
 
 import com.api.springapirest.enums.EmployeeRoleEnum;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +18,7 @@ import lombok.Setter;
 public class EmployeeDTO {
 
     @Schema(description = "Prénom de l'employé", required = true)
+    @JsonProperty("first_name")
     protected String firstName;
 
     @Schema(description = "Nom de famille de l'employé", required = true)
