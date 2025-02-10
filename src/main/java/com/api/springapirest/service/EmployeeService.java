@@ -5,7 +5,6 @@ import com.api.springapirest.dto.request.EmployeeUpdateDTO;
 import com.api.springapirest.dto.response.EmployeeResponseDTO;
 import com.api.springapirest.exception.NotFoundEmployeeException;
 import com.api.springapirest.exception.SalaryBadException;
-import com.api.springapirest.mapper.EmployeeMapper;
 import com.api.springapirest.entity.Employee;
 import com.api.springapirest.mapper.IEmployeeMapper;
 import com.api.springapirest.repository.EmployeeRepository;
