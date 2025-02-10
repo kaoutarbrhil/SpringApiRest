@@ -1,5 +1,6 @@
 package com.api.springapirest.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -14,6 +15,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private int id;
 
     @NotNull(message = "Username cannot be null")
@@ -32,6 +34,6 @@ public class User {
     @NotBlank(message = "Email cannot be blank")
     @Size(min = 10, max = 50, message = "Email must be between 10 and 50 characters")
     @Email(message = "Invalid email format")
-    @Column(name = "mail", unique = true, nullable = false)
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 }
