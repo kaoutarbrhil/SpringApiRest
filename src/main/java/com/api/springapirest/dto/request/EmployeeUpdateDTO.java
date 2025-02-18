@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Getter
@@ -17,4 +18,7 @@ public class EmployeeUpdateDTO extends EmployeeDTO {
 
     @Schema(description = "Mot de passe de l'employé", example = "SecureP@ss123", required = true)
     private String password;
+
+    @Schema(description = "Image de l'employé", required = false)
+    private MultipartFile image;
 }

@@ -41,4 +41,28 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         );
     }
 
+    @ExceptionHandler(LoginException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ResponseEntity<ErrorMessage> handleLoginException(LoginException ex) {
+        return new ResponseEntity<>(
+                ErrorMessage.builder().message(Map.of("Error", ex.getMessage()))
+                        .details("")
+                        .timestamp(new Date())
+                        .build(),
+                HttpStatus.UNAUTHORIZED
+        );
+    }
+
+    @ExceptionHandler(LogoutException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ResponseEntity<ErrorMessage> handleLogoutException(LogoutException ex) {
+        return new ResponseEntity<>(
+                ErrorMessage.builder().message(Map.of("Error", ex.getMessage()))
+                        .details("")
+                        .timestamp(new Date())
+                        .build(),
+                HttpStatus.UNAUTHORIZED
+        );
+    }
+
 }

@@ -23,7 +23,7 @@ import java.util.List;
 @CrossOrigin("http://localhost:3000/*")
 @RequestMapping("/api/v1/employees")
 @RequiredArgsConstructor
-public class EmployeeController {
+public class EmployeeController implements IEmployeeController{
 
     @Autowired
     @Qualifier("employee_service")
@@ -82,6 +82,21 @@ public class EmployeeController {
         return ResponseEntity.ok(
                 employeeService.updateEmployee(id, updatedEmployee)
         );
+    }
+
+    @Operation(summary = "Login employee", description = "Authenticate employee with email and password")
+    @ApiResponse(responseCode = "200", description = "Login successful")
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestParam String email, @RequestParam String password) {
+        return ResponseEntity.ok(employeeService.login(email, password));
+    }
+
+    @Operation(summary = "Logout employee", description = "Logs out the current employee")
+    @ApiResponse(responseCode = "204", description = "Logout successful")
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestParam String email) {
+        employeeService.logout(email);
+        return ResponseEntity.noContent().build();
     }
 
 }

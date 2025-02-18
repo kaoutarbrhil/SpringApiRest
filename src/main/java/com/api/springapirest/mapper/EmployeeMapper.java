@@ -15,13 +15,15 @@ public class EmployeeMapper implements IEmployeeMapper {
         log.info("Start of mapping from entity to response");
         EmployeeResponseDTO dto = new EmployeeResponseDTO();
         dto.setId(employee.getId());
+        dto.setUserName(employee.getUserName());
         dto.setFirstName(employee.getFirstName());
         dto.setLastName(employee.getLastName());
-        dto.setMail(employee.getMail());
+        dto.setEmail(employee.getEmail());
         dto.setActive(employee.getActive());
         dto.setRole(employee.getRole());
         dto.setSalary(employee.getSalary());
         dto.setDate(employee.getDate());
+        dto.setImageUrl(employee.getImageUrl());
         log.info("End of mapping from entity to response");
         return dto;
     }
@@ -29,9 +31,10 @@ public class EmployeeMapper implements IEmployeeMapper {
     public Employee createReqtoEntity(final EmployeeCreateDTO dto) {
         log.info("Start of mapping from create employee to entity");
         Employee employee = new Employee();
+        employee.setUserName(dto.getUserName());
         employee.setFirstName(dto.getFirstName());
         employee.setLastName(dto.getLastName());
-        employee.setMail(dto.getMail());
+        employee.setEmail(dto.getEmail());
         employee.setActive(dto.getActive());
         employee.setRole(dto.getRole());
         employee.setSalary(dto.getSalary());
@@ -44,9 +47,10 @@ public class EmployeeMapper implements IEmployeeMapper {
         log.info("Start of mapping from update employee to entity with id: {}", id);
         Employee employee = new Employee();
         employee.setId(id);
+        employee.setUserName(dto.getUserName());
         employee.setFirstName(dto.getFirstName());
         employee.setLastName(dto.getLastName());
-        employee.setMail(dto.getMail());
+        employee.setEmail(dto.getEmail());
         employee.setActive(dto.getActive());
         employee.setRole(dto.getRole());
         employee.setSalary(dto.getSalary());
